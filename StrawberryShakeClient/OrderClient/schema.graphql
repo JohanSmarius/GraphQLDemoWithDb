@@ -1,0 +1,206 @@
+﻿schema {
+  query: OrderQuery
+  mutation: OrderMutation
+}
+
+type OrderQuery {
+  allOrders(where: OrderFilterInput order: [OrderSortInput!]): [Order!]!
+  orderById(id: Int!): Order!
+  ordersEnumerable: [Order!]!
+  orders(where: OrderFilterInput order: [OrderSortInput!]): [Order!]!
+}
+
+type OrderMutation {
+  addCustomer(customerInput: CustomerInput!): CustomerPayload!
+}
+
+input OrderFilterInput {
+  and: [OrderFilterInput!]
+  or: [OrderFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  orderLines: ListFilterInputTypeOfOrderlineFilterInput
+  customer: CustomerFilterInput
+  customerId: ComparableInt32OperationFilterInput
+  orderTime: ComparableDateTimeOperationFilterInput
+  orderStatus: OrderStatusOperationFilterInput
+}
+
+input OrderSortInput {
+  id: SortEnumType
+  customer: CustomerSortInput
+  customerId: SortEnumType
+  orderTime: SortEnumType
+  orderStatus: SortEnumType
+}
+
+input ComparableInt32OperationFilterInput {
+  eq: Int
+  neq: Int
+  in: [Int!]
+  nin: [Int!]
+  gt: Int
+  ngt: Int
+  gte: Int
+  ngte: Int
+  lt: Int
+  nlt: Int
+  lte: Int
+  nlte: Int
+}
+
+input ListFilterInputTypeOfOrderlineFilterInput {
+  all: OrderlineFilterInput
+  none: OrderlineFilterInput
+  some: OrderlineFilterInput
+  any: Boolean
+}
+
+input CustomerFilterInput {
+  and: [CustomerFilterInput!]
+  or: [CustomerFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  name: StringOperationFilterInput
+  eMailAddress: StringOperationFilterInput
+}
+
+input ComparableDateTimeOperationFilterInput {
+  eq: DateTime
+  neq: DateTime
+  in: [DateTime!]
+  nin: [DateTime!]
+  gt: DateTime
+  ngt: DateTime
+  gte: DateTime
+  ngte: DateTime
+  lt: DateTime
+  nlt: DateTime
+  lte: DateTime
+  nlte: DateTime
+}
+
+input OrderStatusOperationFilterInput {
+  eq: OrderStatus
+  neq: OrderStatus
+  in: [OrderStatus!]
+  nin: [OrderStatus!]
+}
+
+enum SortEnumType {
+  ASC
+  DESC
+}
+
+input CustomerSortInput {
+  id: SortEnumType
+  name: SortEnumType
+  eMailAddress: SortEnumType
+}
+
+input OrderlineFilterInput {
+  and: [OrderlineFilterInput!]
+  or: [OrderlineFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  orderId: ComparableInt32OperationFilterInput
+  order: OrderFilterInput
+  product: ProductFilterInput
+  productId: ComparableInt32OperationFilterInput
+  quantity: ComparableInt32OperationFilterInput
+  discountPercentage: ComparableDecimalOperationFilterInput
+}
+
+input StringOperationFilterInput {
+  and: [StringOperationFilterInput!]
+  or: [StringOperationFilterInput!]
+  eq: String
+  neq: String
+  contains: String
+  ncontains: String
+  in: [String]
+  nin: [String]
+  startsWith: String
+  nstartsWith: String
+  endsWith: String
+  nendsWith: String
+}
+
+input ProductFilterInput {
+  and: [ProductFilterInput!]
+  or: [ProductFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  name: StringOperationFilterInput
+  eANCode: StringOperationFilterInput
+  price: ComparableDecimalOperationFilterInput
+  weight: ComparableDecimalOperationFilterInput
+}
+
+input ComparableDecimalOperationFilterInput {
+  eq: Decimal
+  neq: Decimal
+  in: [Decimal!]
+  nin: [Decimal!]
+  gt: Decimal
+  ngt: Decimal
+  gte: Decimal
+  ngte: Decimal
+  lt: Decimal
+  nlt: Decimal
+  lte: Decimal
+  nlte: Decimal
+}
+
+type CustomerPayload {
+  customer: Customer!
+  error: String
+}
+
+type Order {
+  id: Int!
+  orderLines: [Orderline!]!
+  customer: Customer!
+  customerId: Int!
+  orderTime: DateTime!
+  orderStatus: OrderStatus!
+}
+
+input CustomerInput {
+  name: String!
+}
+
+"The `DateTime` scalar represents an ISO-8601 compliant date time type."
+scalar DateTime
+
+enum OrderStatus {
+  NEW
+  PAID
+  OPENTOPICK
+  SHIPPED
+  DELIVERED
+  RETURNED
+}
+
+"The built-in `Decimal` scalar type."
+scalar Decimal
+
+type Orderline {
+  id: Int!
+  orderId: Int!
+  order: Order!
+  product: Product!
+  productId: Int!
+  quantity: Int!
+  discountPercentage: Decimal!
+}
+
+type Customer {
+  id: Int!
+  name: String!
+  eMailAddress: String
+}
+
+type Product {
+  id: Int!
+  name: String!
+  eANCode: String!
+  price: Decimal!
+  weight: Decimal!
+}

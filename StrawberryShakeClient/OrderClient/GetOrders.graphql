@@ -1,0 +1,12 @@
+query orders {
+  orders {
+    id
+    orderStatus
+    orderLines{
+      id
+      product {
+        name
+      }
+    }
+  }
+}
