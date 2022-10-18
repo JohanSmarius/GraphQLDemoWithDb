@@ -16,6 +16,7 @@ namespace Microsoft.Extensions.DependencyInjection
             });
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton(services, sp => new global::StrawberryShakeClient.State.OrderClientStoreAccessor(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationStore>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)), global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IEntityStore>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)), global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IEntityIdSerializer>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)), global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::System.Collections.Generic.IEnumerable<global::StrawberryShake.IOperationRequestFactory>>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)), global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::System.Collections.Generic.IEnumerable<global::StrawberryShake.IOperationResultDataFactory>>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp))));
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShakeClient.OrdersQuery>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShakeClient.AddCustomerMutation>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)));
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShakeClient.OrderClient>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)));
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShakeClient.IOrderClient>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)));
             return new global::StrawberryShake.ClientBuilder<global::StrawberryShakeClient.State.OrderClientStoreAccessor>("OrderClient", services, serviceCollection);
@@ -33,6 +34,7 @@ namespace Microsoft.Extensions.DependencyInjection
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IEntityMapper<global::StrawberryShakeClient.State.OrderEntity, global::StrawberryShakeClient.Orders_Orders_Order>, global::StrawberryShakeClient.State.Orders_Orders_OrderFromOrderEntityMapper>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IEntityMapper<global::StrawberryShakeClient.State.OrderlineEntity, global::StrawberryShakeClient.Orders_Orders_OrderLines_Orderline>, global::StrawberryShakeClient.State.Orders_Orders_OrderLines_OrderlineFromOrderlineEntityMapper>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IEntityMapper<global::StrawberryShakeClient.State.ProductEntity, global::StrawberryShakeClient.Orders_Orders_OrderLines_Product_Product>, global::StrawberryShakeClient.State.Orders_Orders_OrderLines_Product_ProductFromProductEntityMapper>(services);
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IEntityMapper<global::StrawberryShakeClient.State.CustomerEntity, global::StrawberryShakeClient.AddCustomer_AddCustomer_Customer_Customer>, global::StrawberryShakeClient.State.AddCustomer_AddCustomer_Customer_CustomerFromCustomerEntityMapper>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.Serialization.ISerializer, global::StrawberryShakeClient.OrderStatusSerializer>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.Serialization.ISerializer, global::StrawberryShake.Serialization.StringSerializer>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.Serialization.ISerializer, global::StrawberryShake.Serialization.BooleanSerializer>(services);
@@ -50,6 +52,7 @@ namespace Microsoft.Extensions.DependencyInjection
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.Serialization.ISerializer, global::StrawberryShake.Serialization.ByteArraySerializer>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.Serialization.ISerializer, global::StrawberryShake.Serialization.TimeSpanSerializer>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.Serialization.ISerializer, global::StrawberryShake.Serialization.JsonSerializer>(services);
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.Serialization.ISerializer, global::StrawberryShakeClient.CustomerInputInputValueFormatter>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.Serialization.ISerializerResolver>(services, sp => new global::StrawberryShake.Serialization.SerializerResolver(global::System.Linq.Enumerable.Concat(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::System.Collections.Generic.IEnumerable<global::StrawberryShake.Serialization.ISerializer>>(parentServices), global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::System.Collections.Generic.IEnumerable<global::StrawberryShake.Serialization.ISerializer>>(sp))));
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultDataFactory<global::StrawberryShakeClient.IOrdersResult>, global::StrawberryShakeClient.State.OrdersResultFactory>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultDataFactory>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationResultDataFactory<global::StrawberryShakeClient.IOrdersResult>>(sp));
@@ -58,6 +61,13 @@ namespace Microsoft.Extensions.DependencyInjection
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationExecutor<global::StrawberryShakeClient.IOrdersResult>>(services, sp => new global::StrawberryShake.OperationExecutor<global::System.Text.Json.JsonDocument, global::StrawberryShakeClient.IOrdersResult>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.Transport.Http.IHttpConnection>(sp), () => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationResultBuilder<global::System.Text.Json.JsonDocument, global::StrawberryShakeClient.IOrdersResult>>(sp), global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationStore>(sp), strategy));
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShakeClient.OrdersQuery>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShakeClient.IOrdersQuery>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShakeClient.OrdersQuery>(sp));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultDataFactory<global::StrawberryShakeClient.IAddCustomerResult>, global::StrawberryShakeClient.State.AddCustomerResultFactory>(services);
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultDataFactory>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationResultDataFactory<global::StrawberryShakeClient.IAddCustomerResult>>(sp));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationRequestFactory>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShakeClient.IAddCustomerMutation>(sp));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultBuilder<global::System.Text.Json.JsonDocument, global::StrawberryShakeClient.IAddCustomerResult>, global::StrawberryShakeClient.State.AddCustomerBuilder>(services);
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationExecutor<global::StrawberryShakeClient.IAddCustomerResult>>(services, sp => new global::StrawberryShake.OperationExecutor<global::System.Text.Json.JsonDocument, global::StrawberryShakeClient.IAddCustomerResult>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.Transport.Http.IHttpConnection>(sp), () => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationResultBuilder<global::System.Text.Json.JsonDocument, global::StrawberryShakeClient.IAddCustomerResult>>(sp), global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationStore>(sp), strategy));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShakeClient.AddCustomerMutation>(services);
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShakeClient.IAddCustomerMutation>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShakeClient.AddCustomerMutation>(sp));
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IEntityIdSerializer, global::StrawberryShakeClient.State.OrderClientEntityIdFactory>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShakeClient.OrderClient>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShakeClient.IOrderClient>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShakeClient.OrderClient>(sp));
@@ -400,6 +410,355 @@ namespace StrawberryShakeClient
     }
 
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial class AddCustomerResult : global::System.IEquatable<AddCustomerResult>, IAddCustomerResult
+    {
+        public AddCustomerResult(global::StrawberryShakeClient.IAddCustomer_AddCustomer addCustomer)
+        {
+            AddCustomer = addCustomer;
+        }
+
+        public global::StrawberryShakeClient.IAddCustomer_AddCustomer AddCustomer { get; }
+
+        public virtual global::System.Boolean Equals(AddCustomerResult? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return (AddCustomer.Equals(other.AddCustomer));
+        }
+
+        public override global::System.Boolean Equals(global::System.Object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((AddCustomerResult)obj);
+        }
+
+        public override global::System.Int32 GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                hash ^= 397 * AddCustomer.GetHashCode();
+                return hash;
+            }
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial class AddCustomer_AddCustomer_CustomerPayload : global::System.IEquatable<AddCustomer_AddCustomer_CustomerPayload>, IAddCustomer_AddCustomer_CustomerPayload
+    {
+        public AddCustomer_AddCustomer_CustomerPayload(global::StrawberryShakeClient.IAddCustomer_AddCustomer_Customer customer, global::System.String? error)
+        {
+            Customer = customer;
+            Error = error;
+        }
+
+        public global::StrawberryShakeClient.IAddCustomer_AddCustomer_Customer Customer { get; }
+
+        public global::System.String? Error { get; }
+
+        public virtual global::System.Boolean Equals(AddCustomer_AddCustomer_CustomerPayload? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return (Customer.Equals(other.Customer)) && ((Error is null && other.Error is null) || Error != null && Error.Equals(other.Error));
+        }
+
+        public override global::System.Boolean Equals(global::System.Object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((AddCustomer_AddCustomer_CustomerPayload)obj);
+        }
+
+        public override global::System.Int32 GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                hash ^= 397 * Customer.GetHashCode();
+                if (Error != null)
+                {
+                    hash ^= 397 * Error.GetHashCode();
+                }
+
+                return hash;
+            }
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial class AddCustomer_AddCustomer_Customer_Customer : global::System.IEquatable<AddCustomer_AddCustomer_Customer_Customer>, IAddCustomer_AddCustomer_Customer_Customer
+    {
+        public AddCustomer_AddCustomer_Customer_Customer(global::System.Int32 id, global::System.String name, global::System.String? eMailAddress)
+        {
+            Id = id;
+            Name = name;
+            EMailAddress = eMailAddress;
+        }
+
+        public global::System.Int32 Id { get; }
+
+        public global::System.String Name { get; }
+
+        public global::System.String? EMailAddress { get; }
+
+        public virtual global::System.Boolean Equals(AddCustomer_AddCustomer_Customer_Customer? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return (Id == other.Id) && Name.Equals(other.Name) && ((EMailAddress is null && other.EMailAddress is null) || EMailAddress != null && EMailAddress.Equals(other.EMailAddress));
+        }
+
+        public override global::System.Boolean Equals(global::System.Object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((AddCustomer_AddCustomer_Customer_Customer)obj);
+        }
+
+        public override global::System.Int32 GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                hash ^= 397 * Id.GetHashCode();
+                hash ^= 397 * Name.GetHashCode();
+                if (EMailAddress != null)
+                {
+                    hash ^= 397 * EMailAddress.GetHashCode();
+                }
+
+                return hash;
+            }
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial interface IAddCustomerResult
+    {
+        public global::StrawberryShakeClient.IAddCustomer_AddCustomer AddCustomer { get; }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial interface IAddCustomer_AddCustomer
+    {
+        public global::StrawberryShakeClient.IAddCustomer_AddCustomer_Customer Customer { get; }
+
+        public global::System.String? Error { get; }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial interface IAddCustomer_AddCustomer_CustomerPayload : IAddCustomer_AddCustomer
+    {
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial interface IAddCustomer_AddCustomer_Customer
+    {
+        public global::System.Int32 Id { get; }
+
+        public global::System.String Name { get; }
+
+        public global::System.String? EMailAddress { get; }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial interface IAddCustomer_AddCustomer_Customer_Customer : IAddCustomer_AddCustomer_Customer
+    {
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial class CustomerInputInputValueFormatter : global::StrawberryShake.Serialization.IInputObjectFormatter
+    {
+        private global::StrawberryShake.Serialization.IInputValueFormatter _stringFormatter = default !;
+        public global::System.String TypeName => "CustomerInput";
+        public void Initialize(global::StrawberryShake.Serialization.ISerializerResolver serializerResolver)
+        {
+            _stringFormatter = serializerResolver.GetInputValueFormatter("String");
+        }
+
+        public global::System.Object? Format(global::System.Object? runtimeValue)
+        {
+            if (runtimeValue is null)
+            {
+                return null;
+            }
+
+            var input = runtimeValue as global::StrawberryShakeClient.CustomerInput;
+            var inputInfo = runtimeValue as global::StrawberryShakeClient.State.ICustomerInputInfo;
+            if (input is null || inputInfo is null)
+            {
+                throw new global::System.ArgumentException(nameof(runtimeValue));
+            }
+
+            var fields = new global::System.Collections.Generic.List<global::System.Collections.Generic.KeyValuePair<global::System.String, global::System.Object?>>();
+            if (inputInfo.IsNameSet)
+            {
+                fields.Add(new global::System.Collections.Generic.KeyValuePair<global::System.String, global::System.Object?>("name", FormatName(input.Name)));
+            }
+
+            return fields;
+        }
+
+        private global::System.Object? FormatName(global::System.String input)
+        {
+            if (input is null)
+            {
+                throw new global::System.ArgumentNullException(nameof(input));
+            }
+
+            return _stringFormatter.Format(input);
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial class CustomerInput : global::StrawberryShakeClient.State.ICustomerInputInfo, global::System.IEquatable<CustomerInput>
+    {
+        public override global::System.Boolean Equals(global::System.Object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((CustomerInput)obj);
+        }
+
+        public virtual global::System.Boolean Equals(CustomerInput? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return (Name.Equals(other.Name));
+        }
+
+        public override global::System.Int32 GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                hash ^= 397 * Name.GetHashCode();
+                return hash;
+            }
+        }
+
+        private global::System.String _value_name = default !;
+        private global::System.Boolean _set_name;
+        public global::System.String Name
+        {
+            get => _value_name;
+            set
+            {
+                _set_name = true;
+                _value_name = value;
+            }
+        }
+
+        global::System.Boolean global::StrawberryShakeClient.State.ICustomerInputInfo.IsNameSet => _set_name;
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
     public enum OrderStatus
     {
         New,
@@ -595,19 +954,162 @@ namespace StrawberryShakeClient
     }
 
     /// <summary>
+    /// Represents the operation service of the AddCustomer GraphQL operation
+    /// <code>
+    /// mutation AddCustomer($customerInput: CustomerInput!) {
+    ///   addCustomer(customerInput: $customerInput) {
+    ///     __typename
+    ///     customer {
+    ///       __typename
+    ///       id
+    ///       name
+    ///       eMailAddress
+    ///       ... on Customer {
+    ///         id
+    ///       }
+    ///     }
+    ///     error
+    ///   }
+    /// }
+    /// </code>
+    /// </summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial class AddCustomerMutationDocument : global::StrawberryShake.IDocument
+    {
+        private AddCustomerMutationDocument()
+        {
+        }
+
+        public static AddCustomerMutationDocument Instance { get; } = new AddCustomerMutationDocument();
+        public global::StrawberryShake.OperationKind Kind => global::StrawberryShake.OperationKind.Mutation;
+        public global::System.ReadOnlySpan<global::System.Byte> Body => new global::System.Byte[]{0x6d, 0x75, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x20, 0x41, 0x64, 0x64, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x65, 0x72, 0x28, 0x24, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x65, 0x72, 0x49, 0x6e, 0x70, 0x75, 0x74, 0x3a, 0x20, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x65, 0x72, 0x49, 0x6e, 0x70, 0x75, 0x74, 0x21, 0x29, 0x20, 0x7b, 0x20, 0x61, 0x64, 0x64, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x65, 0x72, 0x28, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x65, 0x72, 0x49, 0x6e, 0x70, 0x75, 0x74, 0x3a, 0x20, 0x24, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x65, 0x72, 0x49, 0x6e, 0x70, 0x75, 0x74, 0x29, 0x20, 0x7b, 0x20, 0x5f, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x6e, 0x61, 0x6d, 0x65, 0x20, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x65, 0x72, 0x20, 0x7b, 0x20, 0x5f, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x6e, 0x61, 0x6d, 0x65, 0x20, 0x69, 0x64, 0x20, 0x6e, 0x61, 0x6d, 0x65, 0x20, 0x65, 0x4d, 0x61, 0x69, 0x6c, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x20, 0x2e, 0x2e, 0x2e, 0x20, 0x6f, 0x6e, 0x20, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x65, 0x72, 0x20, 0x7b, 0x20, 0x69, 0x64, 0x20, 0x7d, 0x20, 0x7d, 0x20, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x20, 0x7d, 0x20, 0x7d};
+        public global::StrawberryShake.DocumentHash Hash { get; } = new global::StrawberryShake.DocumentHash("md5Hash", "02e132d8a08536f61fbfb78ba1555a57");
+        public override global::System.String ToString()
+        {
+#if NETSTANDARD2_0
+        return global::System.Text.Encoding.UTF8.GetString(Body.ToArray());
+#else
+            return global::System.Text.Encoding.UTF8.GetString(Body);
+#endif
+        }
+    }
+
+    /// <summary>
+    /// Represents the operation service of the AddCustomer GraphQL operation
+    /// <code>
+    /// mutation AddCustomer($customerInput: CustomerInput!) {
+    ///   addCustomer(customerInput: $customerInput) {
+    ///     __typename
+    ///     customer {
+    ///       __typename
+    ///       id
+    ///       name
+    ///       eMailAddress
+    ///       ... on Customer {
+    ///         id
+    ///       }
+    ///     }
+    ///     error
+    ///   }
+    /// }
+    /// </code>
+    /// </summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial class AddCustomerMutation : global::StrawberryShakeClient.IAddCustomerMutation
+    {
+        private readonly global::StrawberryShake.IOperationExecutor<IAddCustomerResult> _operationExecutor;
+        private readonly global::StrawberryShake.Serialization.IInputValueFormatter _customerInputFormatter;
+        public AddCustomerMutation(global::StrawberryShake.IOperationExecutor<IAddCustomerResult> operationExecutor, global::StrawberryShake.Serialization.ISerializerResolver serializerResolver)
+        {
+            _operationExecutor = operationExecutor ?? throw new global::System.ArgumentNullException(nameof(operationExecutor));
+            _customerInputFormatter = serializerResolver.GetInputValueFormatter("CustomerInput");
+        }
+
+        global::System.Type global::StrawberryShake.IOperationRequestFactory.ResultType => typeof(IAddCustomerResult);
+        public async global::System.Threading.Tasks.Task<global::StrawberryShake.IOperationResult<IAddCustomerResult>> ExecuteAsync(global::StrawberryShakeClient.CustomerInput customerInput, global::System.Threading.CancellationToken cancellationToken = default)
+        {
+            var request = CreateRequest(customerInput);
+            return await _operationExecutor.ExecuteAsync(request, cancellationToken).ConfigureAwait(false);
+        }
+
+        public global::System.IObservable<global::StrawberryShake.IOperationResult<IAddCustomerResult>> Watch(global::StrawberryShakeClient.CustomerInput customerInput, global::StrawberryShake.ExecutionStrategy? strategy = null)
+        {
+            var request = CreateRequest(customerInput);
+            return _operationExecutor.Watch(request, strategy);
+        }
+
+        private global::StrawberryShake.OperationRequest CreateRequest(global::StrawberryShakeClient.CustomerInput customerInput)
+        {
+            var variables = new global::System.Collections.Generic.Dictionary<global::System.String, global::System.Object?>();
+            variables.Add("customerInput", FormatCustomerInput(customerInput));
+            return CreateRequest(variables);
+        }
+
+        private global::StrawberryShake.OperationRequest CreateRequest(global::System.Collections.Generic.IReadOnlyDictionary<global::System.String, global::System.Object?>? variables)
+        {
+            return new global::StrawberryShake.OperationRequest(id: AddCustomerMutationDocument.Instance.Hash.Value, name: "AddCustomer", document: AddCustomerMutationDocument.Instance, strategy: global::StrawberryShake.RequestStrategy.Default, variables: variables);
+        }
+
+        private global::System.Object? FormatCustomerInput(global::StrawberryShakeClient.CustomerInput value)
+        {
+            if (value is null)
+            {
+                throw new global::System.ArgumentNullException(nameof(value));
+            }
+
+            return _customerInputFormatter.Format(value);
+        }
+
+        global::StrawberryShake.OperationRequest global::StrawberryShake.IOperationRequestFactory.Create(global::System.Collections.Generic.IReadOnlyDictionary<global::System.String, global::System.Object?>? variables)
+        {
+            return CreateRequest(variables!);
+        }
+    }
+
+    /// <summary>
+    /// Represents the operation service of the AddCustomer GraphQL operation
+    /// <code>
+    /// mutation AddCustomer($customerInput: CustomerInput!) {
+    ///   addCustomer(customerInput: $customerInput) {
+    ///     __typename
+    ///     customer {
+    ///       __typename
+    ///       id
+    ///       name
+    ///       eMailAddress
+    ///       ... on Customer {
+    ///         id
+    ///       }
+    ///     }
+    ///     error
+    ///   }
+    /// }
+    /// </code>
+    /// </summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial interface IAddCustomerMutation : global::StrawberryShake.IOperationRequestFactory
+    {
+        global::System.Threading.Tasks.Task<global::StrawberryShake.IOperationResult<IAddCustomerResult>> ExecuteAsync(global::StrawberryShakeClient.CustomerInput customerInput, global::System.Threading.CancellationToken cancellationToken = default);
+        global::System.IObservable<global::StrawberryShake.IOperationResult<IAddCustomerResult>> Watch(global::StrawberryShakeClient.CustomerInput customerInput, global::StrawberryShake.ExecutionStrategy? strategy = null);
+    }
+
+    /// <summary>
     /// Represents the OrderClient GraphQL client
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
     public partial class OrderClient : global::StrawberryShakeClient.IOrderClient
     {
         private readonly global::StrawberryShakeClient.IOrdersQuery _orders;
-        public OrderClient(global::StrawberryShakeClient.IOrdersQuery orders)
+        private readonly global::StrawberryShakeClient.IAddCustomerMutation _addCustomer;
+        public OrderClient(global::StrawberryShakeClient.IOrdersQuery orders, global::StrawberryShakeClient.IAddCustomerMutation addCustomer)
         {
             _orders = orders ?? throw new global::System.ArgumentNullException(nameof(orders));
+            _addCustomer = addCustomer ?? throw new global::System.ArgumentNullException(nameof(addCustomer));
         }
 
         public static global::System.String ClientName => "OrderClient";
         public global::StrawberryShakeClient.IOrdersQuery Orders => _orders;
+        public global::StrawberryShakeClient.IAddCustomerMutation AddCustomer => _addCustomer;
     }
 
     /// <summary>
@@ -617,6 +1119,8 @@ namespace StrawberryShakeClient
     public partial interface IOrderClient
     {
         global::StrawberryShakeClient.IOrdersQuery Orders { get; }
+
+        global::StrawberryShakeClient.IAddCustomerMutation AddCustomer { get; }
     }
 }
 
@@ -662,6 +1166,23 @@ namespace StrawberryShakeClient.State
         }
 
         public global::System.String Name { get; }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial class CustomerEntity
+    {
+        public CustomerEntity(global::System.Int32 id = default !, global::System.String name = default !, global::System.String? eMailAddress = default !)
+        {
+            Id = id;
+            Name = name;
+            EMailAddress = eMailAddress;
+        }
+
+        public global::System.Int32 Id { get; }
+
+        public global::System.String Name { get; }
+
+        public global::System.String? EMailAddress { get; }
     }
 
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
@@ -855,6 +1376,112 @@ namespace StrawberryShakeClient.State
 
             return new Orders_Orders_OrderLines_Product_Product(entity.Name);
         }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial class AddCustomerResultFactory : global::StrawberryShake.IOperationResultDataFactory<global::StrawberryShakeClient.AddCustomerResult>
+    {
+        private readonly global::StrawberryShake.IEntityStore _entityStore;
+        private readonly global::StrawberryShake.IEntityMapper<global::StrawberryShakeClient.State.CustomerEntity, AddCustomer_AddCustomer_Customer_Customer> _addCustomer_AddCustomer_Customer_CustomerFromCustomerEntityMapper;
+        public AddCustomerResultFactory(global::StrawberryShake.IEntityStore entityStore, global::StrawberryShake.IEntityMapper<global::StrawberryShakeClient.State.CustomerEntity, AddCustomer_AddCustomer_Customer_Customer> addCustomer_AddCustomer_Customer_CustomerFromCustomerEntityMapper)
+        {
+            _entityStore = entityStore ?? throw new global::System.ArgumentNullException(nameof(entityStore));
+            _addCustomer_AddCustomer_Customer_CustomerFromCustomerEntityMapper = addCustomer_AddCustomer_Customer_CustomerFromCustomerEntityMapper ?? throw new global::System.ArgumentNullException(nameof(addCustomer_AddCustomer_Customer_CustomerFromCustomerEntityMapper));
+        }
+
+        global::System.Type global::StrawberryShake.IOperationResultDataFactory.ResultType => typeof(global::StrawberryShakeClient.IAddCustomerResult);
+        public AddCustomerResult Create(global::StrawberryShake.IOperationResultDataInfo dataInfo, global::StrawberryShake.IEntityStoreSnapshot? snapshot = null)
+        {
+            if (snapshot is null)
+            {
+                snapshot = _entityStore.CurrentSnapshot;
+            }
+
+            if (dataInfo is AddCustomerResultInfo info)
+            {
+                return new AddCustomerResult(MapNonNullableIAddCustomer_AddCustomer(info.AddCustomer, snapshot));
+            }
+
+            throw new global::System.ArgumentException("AddCustomerResultInfo expected.");
+        }
+
+        private global::StrawberryShakeClient.IAddCustomer_AddCustomer MapNonNullableIAddCustomer_AddCustomer(global::StrawberryShakeClient.State.CustomerPayloadData data, global::StrawberryShake.IEntityStoreSnapshot snapshot)
+        {
+            IAddCustomer_AddCustomer returnValue = default !;
+            if (data.__typename.Equals("CustomerPayload", global::System.StringComparison.Ordinal))
+            {
+                returnValue = new AddCustomer_AddCustomer_CustomerPayload(MapNonNullableIAddCustomer_AddCustomer_Customer(data.Customer ?? throw new global::System.ArgumentNullException(), snapshot), data.Error);
+            }
+            else
+            {
+                throw new global::System.NotSupportedException();
+            }
+
+            return returnValue;
+        }
+
+        private global::StrawberryShakeClient.IAddCustomer_AddCustomer_Customer MapNonNullableIAddCustomer_AddCustomer_Customer(global::StrawberryShake.EntityId entityId, global::StrawberryShake.IEntityStoreSnapshot snapshot)
+        {
+            if (entityId.Name.Equals("Customer", global::System.StringComparison.Ordinal))
+            {
+                return _addCustomer_AddCustomer_Customer_CustomerFromCustomerEntityMapper.Map(snapshot.GetEntity<global::StrawberryShakeClient.State.CustomerEntity>(entityId) ?? throw new global::StrawberryShake.GraphQLClientException());
+            }
+
+            throw new global::System.NotSupportedException();
+        }
+
+        global::System.Object global::StrawberryShake.IOperationResultDataFactory.Create(global::StrawberryShake.IOperationResultDataInfo dataInfo, global::StrawberryShake.IEntityStoreSnapshot? snapshot)
+        {
+            return Create(dataInfo, snapshot);
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial class AddCustomerResultInfo : global::StrawberryShake.IOperationResultDataInfo
+    {
+        private readonly global::System.Collections.Generic.IReadOnlyCollection<global::StrawberryShake.EntityId> _entityIds;
+        private readonly global::System.UInt64 _version;
+        public AddCustomerResultInfo(global::StrawberryShakeClient.State.CustomerPayloadData addCustomer, global::System.Collections.Generic.IReadOnlyCollection<global::StrawberryShake.EntityId> entityIds, global::System.UInt64 version)
+        {
+            AddCustomer = addCustomer;
+            _entityIds = entityIds ?? throw new global::System.ArgumentNullException(nameof(entityIds));
+            _version = version;
+        }
+
+        public global::StrawberryShakeClient.State.CustomerPayloadData AddCustomer { get; }
+
+        public global::System.Collections.Generic.IReadOnlyCollection<global::StrawberryShake.EntityId> EntityIds => _entityIds;
+        public global::System.UInt64 Version => _version;
+        public global::StrawberryShake.IOperationResultDataInfo WithVersion(global::System.UInt64 version)
+        {
+            return new AddCustomerResultInfo(AddCustomer, _entityIds, version);
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial class AddCustomer_AddCustomer_Customer_CustomerFromCustomerEntityMapper : global::StrawberryShake.IEntityMapper<global::StrawberryShakeClient.State.CustomerEntity, AddCustomer_AddCustomer_Customer_Customer>
+    {
+        private readonly global::StrawberryShake.IEntityStore _entityStore;
+        public AddCustomer_AddCustomer_Customer_CustomerFromCustomerEntityMapper(global::StrawberryShake.IEntityStore entityStore)
+        {
+            _entityStore = entityStore ?? throw new global::System.ArgumentNullException(nameof(entityStore));
+        }
+
+        public AddCustomer_AddCustomer_Customer_Customer Map(global::StrawberryShakeClient.State.CustomerEntity entity, global::StrawberryShake.IEntityStoreSnapshot? snapshot = null)
+        {
+            if (snapshot is null)
+            {
+                snapshot = _entityStore.CurrentSnapshot;
+            }
+
+            return new AddCustomer_AddCustomer_Customer_Customer(entity.Id, entity.Name, entity.EMailAddress);
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    internal interface ICustomerInputInfo
+    {
+        global::System.Boolean IsNameSet { get; }
     }
 
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
@@ -1073,6 +1700,168 @@ namespace StrawberryShakeClient.State
     }
 
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial class AddCustomerBuilder : global::StrawberryShake.IOperationResultBuilder<global::System.Text.Json.JsonDocument, global::StrawberryShakeClient.IAddCustomerResult>
+    {
+        private readonly global::StrawberryShake.IEntityStore _entityStore;
+        private readonly global::StrawberryShake.IEntityIdSerializer _idSerializer;
+        private readonly global::StrawberryShake.IOperationResultDataFactory<global::StrawberryShakeClient.IAddCustomerResult> _resultDataFactory;
+        private readonly global::StrawberryShake.Serialization.ILeafValueParser<global::System.String, global::System.String> _stringParser;
+        private readonly global::StrawberryShake.Serialization.ILeafValueParser<global::System.Int32, global::System.Int32> _intParser;
+        public AddCustomerBuilder(global::StrawberryShake.IEntityStore entityStore, global::StrawberryShake.IEntityIdSerializer idSerializer, global::StrawberryShake.IOperationResultDataFactory<global::StrawberryShakeClient.IAddCustomerResult> resultDataFactory, global::StrawberryShake.Serialization.ISerializerResolver serializerResolver)
+        {
+            _entityStore = entityStore ?? throw new global::System.ArgumentNullException(nameof(entityStore));
+            _idSerializer = idSerializer ?? throw new global::System.ArgumentNullException(nameof(idSerializer));
+            _resultDataFactory = resultDataFactory ?? throw new global::System.ArgumentNullException(nameof(resultDataFactory));
+            _stringParser = serializerResolver.GetLeafValueParser<global::System.String, global::System.String>("String") ?? throw new global::System.ArgumentException("No serializer for type `String` found.");
+            _intParser = serializerResolver.GetLeafValueParser<global::System.Int32, global::System.Int32>("Int") ?? throw new global::System.ArgumentException("No serializer for type `Int` found.");
+        }
+
+        public global::StrawberryShake.IOperationResult<IAddCustomerResult> Build(global::StrawberryShake.Response<global::System.Text.Json.JsonDocument> response)
+        {
+            (IAddCustomerResult Result, AddCustomerResultInfo Info)? data = null;
+            global::System.Collections.Generic.IReadOnlyList<global::StrawberryShake.IClientError>? errors = null;
+            if (response.Exception is null)
+            {
+                try
+                {
+                    if (response.Body != null)
+                    {
+                        if (response.Body.RootElement.TryGetProperty("data", out global::System.Text.Json.JsonElement dataElement) && dataElement.ValueKind == global::System.Text.Json.JsonValueKind.Object)
+                        {
+                            data = BuildData(dataElement);
+                        }
+
+                        if (response.Body.RootElement.TryGetProperty("errors", out global::System.Text.Json.JsonElement errorsElement))
+                        {
+                            errors = global::StrawberryShake.Json.JsonErrorParser.ParseErrors(errorsElement);
+                        }
+                    }
+                }
+                catch (global::System.Exception ex)
+                {
+                    errors = new global::StrawberryShake.IClientError[]{new global::StrawberryShake.ClientError(ex.Message, exception: ex, extensions: new global::System.Collections.Generic.Dictionary<global::System.String, global::System.Object?>{{"body", response.Body?.RootElement.ToString()}})};
+                }
+            }
+            else
+            {
+                if (response.Body != null && response.Body.RootElement.TryGetProperty("errors", out global::System.Text.Json.JsonElement errorsElement))
+                {
+                    errors = global::StrawberryShake.Json.JsonErrorParser.ParseErrors(errorsElement);
+                }
+                else
+                {
+                    errors = new global::StrawberryShake.IClientError[]{new global::StrawberryShake.ClientError(response.Exception.Message, exception: response.Exception, extensions: new global::System.Collections.Generic.Dictionary<global::System.String, global::System.Object?>{{"body", response.Body?.RootElement.ToString()}})};
+                }
+            }
+
+            return new global::StrawberryShake.OperationResult<IAddCustomerResult>(data?.Result, data?.Info, _resultDataFactory, errors);
+        }
+
+        private (IAddCustomerResult, AddCustomerResultInfo) BuildData(global::System.Text.Json.JsonElement obj)
+        {
+            var entityIds = new global::System.Collections.Generic.HashSet<global::StrawberryShake.EntityId>();
+            global::StrawberryShake.IEntityStoreSnapshot snapshot = default !;
+            global::StrawberryShakeClient.State.CustomerPayloadData addCustomerId = default !;
+            _entityStore.Update(session =>
+            {
+                addCustomerId = DeserializeNonNullableIAddCustomer_AddCustomer(session, global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "addCustomer"), entityIds);
+                snapshot = session.CurrentSnapshot;
+            });
+            var resultInfo = new AddCustomerResultInfo(addCustomerId, entityIds, snapshot.Version);
+            return (_resultDataFactory.Create(resultInfo), resultInfo);
+        }
+
+        private global::StrawberryShakeClient.State.CustomerPayloadData DeserializeNonNullableIAddCustomer_AddCustomer(global::StrawberryShake.IEntityStoreUpdateSession session, global::System.Text.Json.JsonElement? obj, global::System.Collections.Generic.ISet<global::StrawberryShake.EntityId> entityIds)
+        {
+            if (!obj.HasValue)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
+            var typename = obj.Value.GetProperty("__typename").GetString();
+            if (typename?.Equals("CustomerPayload", global::System.StringComparison.Ordinal) ?? false)
+            {
+                return new global::StrawberryShakeClient.State.CustomerPayloadData(typename, customer: UpdateNonNullableIAddCustomer_AddCustomer_CustomerEntity(session, global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "customer"), entityIds), error: DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "error")));
+            }
+
+            throw new global::System.NotSupportedException();
+        }
+
+        private global::StrawberryShake.EntityId UpdateNonNullableIAddCustomer_AddCustomer_CustomerEntity(global::StrawberryShake.IEntityStoreUpdateSession session, global::System.Text.Json.JsonElement? obj, global::System.Collections.Generic.ISet<global::StrawberryShake.EntityId> entityIds)
+        {
+            if (!obj.HasValue)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
+            global::StrawberryShake.EntityId entityId = _idSerializer.Parse(obj.Value);
+            entityIds.Add(entityId);
+            if (entityId.Name.Equals("Customer", global::System.StringComparison.Ordinal))
+            {
+                if (session.CurrentSnapshot.TryGetEntity(entityId, out global::StrawberryShakeClient.State.CustomerEntity? entity))
+                {
+                    session.SetEntity(entityId, new global::StrawberryShakeClient.State.CustomerEntity(DeserializeNonNullableInt32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "id")), DeserializeNonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "name")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "eMailAddress"))));
+                }
+                else
+                {
+                    session.SetEntity(entityId, new global::StrawberryShakeClient.State.CustomerEntity(DeserializeNonNullableInt32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "id")), DeserializeNonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "name")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "eMailAddress"))));
+                }
+
+                return entityId;
+            }
+
+            throw new global::System.NotSupportedException();
+        }
+
+        private global::System.Int32 DeserializeNonNullableInt32(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
+            return _intParser.Parse(obj.Value.GetInt32()!);
+        }
+
+        private global::System.String DeserializeNonNullableString(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
+            return _stringParser.Parse(obj.Value.GetString()!);
+        }
+
+        private global::System.String? DeserializeString(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                return null;
+            }
+
+            return _stringParser.Parse(obj.Value.GetString()!);
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial class CustomerPayloadData
+    {
+        public CustomerPayloadData(global::System.String __typename, global::StrawberryShake.EntityId? customer = default !, global::System.String? error = default !)
+        {
+            this.__typename = __typename ?? throw new global::System.ArgumentNullException(nameof(__typename));
+            Customer = customer;
+            Error = error;
+        }
+
+        public global::System.String __typename { get; }
+
+        public global::StrawberryShake.EntityId? Customer { get; }
+
+        public global::System.String? Error { get; }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
     public partial class OrderClientEntityIdFactory : global::StrawberryShake.IEntityIdSerializer
     {
         private static readonly global::System.Text.Json.JsonWriterOptions _options = new global::System.Text.Json.JsonWriterOptions()
@@ -1085,6 +1874,7 @@ namespace StrawberryShakeClient.State
                 "Order" => ParseOrderEntityId(obj, __typename),
                 "Orderline" => ParseOrderlineEntityId(obj, __typename),
                 "Product" => ParseProductEntityId(obj, __typename),
+                "Customer" => ParseCustomerEntityId(obj, __typename),
                 _ => throw new global::System.NotSupportedException()};
         }
 
@@ -1095,6 +1885,7 @@ namespace StrawberryShakeClient.State
                 "Order" => FormatOrderEntityId(entityId),
                 "Orderline" => FormatOrderlineEntityId(entityId),
                 "Product" => FormatProductEntityId(entityId),
+                "Customer" => FormatCustomerEntityId(entityId),
                 _ => throw new global::System.NotSupportedException()};
         }
 
@@ -1138,6 +1929,23 @@ namespace StrawberryShakeClient.State
         }
 
         private global::System.String FormatProductEntityId(global::StrawberryShake.EntityId entityId)
+        {
+            using var writer = new global::StrawberryShake.Internal.ArrayWriter();
+            using var jsonWriter = new global::System.Text.Json.Utf8JsonWriter(writer, _options);
+            jsonWriter.WriteStartObject();
+            jsonWriter.WriteString("__typename", entityId.Name);
+            jsonWriter.WriteNumber("id", (global::System.Int32)entityId.Value);
+            jsonWriter.WriteEndObject();
+            jsonWriter.Flush();
+            return global::System.Text.Encoding.UTF8.GetString(writer.GetInternalBuffer(), 0, writer.Length);
+        }
+
+        private global::StrawberryShake.EntityId ParseCustomerEntityId(global::System.Text.Json.JsonElement obj, global::System.String type)
+        {
+            return new global::StrawberryShake.EntityId(type, obj.GetProperty("id").GetInt32()!);
+        }
+
+        private global::System.String FormatCustomerEntityId(global::StrawberryShake.EntityId entityId)
         {
             using var writer = new global::StrawberryShake.Internal.ArrayWriter();
             using var jsonWriter = new global::System.Text.Json.Utf8JsonWriter(writer, _options);

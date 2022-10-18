@@ -10,3 +10,14 @@ query orders {
     }
   }
 }
+
+mutation addCustomer($customerInput : CustomerInput!) {
+   addCustomer(customerInput: $customerInput ) {
+     customer {
+       id
+       name
+        eMailAddress
+     }
+      error
+   }
+}
