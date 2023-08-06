@@ -13,10 +13,5 @@
       <PackageReference Include="StrawberryShake.Transport.Http" Version="12.15.0" />
     </ItemGroup>
 
-    <ItemGroup>
-      <GraphQL Update="OrderClient\GetOrders.graphql">
-        <Generator>MSBuild:Compile</Generator>
-      </GraphQL>
-    </ItemGroup>
 
 </Project>

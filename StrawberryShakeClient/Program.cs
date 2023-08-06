@@ -2,7 +2,7 @@
 using StrawberryShakeClient;
 using StrawberryShake;
 
-IServiceCollection serviceCollection = new ServiceCollection();
+/*IServiceCollection serviceCollection = new ServiceCollection();
 serviceCollection.AddOrderClient()
     .ConfigureHttpClient(client => client.BaseAddress = new Uri("https://localhost:7189/graphql/"));
 
@@ -23,12 +23,13 @@ if (!result.Errors.Any())
         }
     }
 }
+*/
 
-var customerInput = new CustomerInput() {Name = "New customer from generated client "};
-var resultAddCustomer = await client.AddCustomer.ExecuteAsync(customerInput, CancellationToken.None);
-
-if (!resultAddCustomer.Errors.Any())
-{
-    //Console.WriteLine(result!.Data!);
-    Console.WriteLine($"Added {resultAddCustomer!.Data!.AddCustomer!.Customer!.Id} {resultAddCustomer!.Data!.AddCustomer!.Customer!.Name}" );
-}
+// var customerInput = new CustomerInput() {Name = "New customer from generated client "};
+// var resultAddCustomer = await client.AddCustomer.ExecuteAsync(customerInput, CancellationToken.None);
+//
+// if (!resultAddCustomer.Errors.Any())
+// {
+//     //Console.WriteLine(result!.Data!);
+//     Console.WriteLine($"Added {resultAddCustomer!.Data!.AddCustomer!.Customer!.Id} {resultAddCustomer!.Data!.AddCustomer!.Customer!.Name}" );
+// }
