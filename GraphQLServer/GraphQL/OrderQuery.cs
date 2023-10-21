@@ -6,8 +6,6 @@ namespace GraphQLServer.GraphQL;
 
 public class OrderQuery
 {
-    [UseFiltering]
-    [UseSorting]
     public IEnumerable<Order> GetAllOrders()
     {
         return GenerateTestOrders();
@@ -23,6 +21,7 @@ public class OrderQuery
             .Include(order => order.OrderLines).ThenInclude(orderline => orderline.Product)
             .Include(order => order.Customer);
 
+    [UseOffsetPaging]
     [UseProjection]
     [UseFiltering]
     [UseSorting]

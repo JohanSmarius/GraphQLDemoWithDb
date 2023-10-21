@@ -1,5 +1,6 @@
 using GraphQLServer.Database;
 using GraphQLServer.GraphQL;
+using HotChocolate.Types.Pagination;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,15 +12,23 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddPooledDbContextFactory<OrderContext>(options => options.UseSqlite("Data Source=Orders.db")
+builder.Services.AddPooledDbContextFactory<OrderContext>(
+    options => options.UseSqlite("Data Source=Orders.db")
     .EnableSensitiveDataLogging()).AddLogging(Console.WriteLine);
 
 builder.Services.AddGraphQLServer()
     .AddQueryType<OrderQuery>()
-    .AddMutationType<OrderMutation>()
     .RegisterDbContext<OrderContext>(DbContextKind.Pooled)
     .AddProjections()
-    .AddFiltering().AddSorting();
+    .AddFiltering()
+    .AddSorting()
+    .SetPagingOptions(new PagingOptions() { DefaultPageSize = 1, MaxPageSize = 1 });
+
+
+    // .AddMutationType<OrderMutation>()
+    //
+    
+    // .AddFiltering().AddSorting();
 
 var app = builder.Build();
 

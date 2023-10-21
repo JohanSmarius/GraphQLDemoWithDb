@@ -4,6 +4,7 @@ public class Order
 {
     public int Id { get; set; }
 
+    [UseFiltering]
     public ICollection<Orderline> OrderLines { get; set; } = new List<Orderline>(); 
 
     public Customer Customer { get; set; }
