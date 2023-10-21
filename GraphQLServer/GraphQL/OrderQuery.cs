@@ -6,13 +6,6 @@ namespace GraphQLServer.GraphQL;
 
 public class OrderQuery
 {
-    private readonly OrderContext _orderContext;
-
-    public OrderQuery(IDbContextFactory<OrderContext> contextFactory)
-    {
-        _orderContext = contextFactory.CreateDbContext();
-    }
-    
     [UseFiltering]
     [UseSorting]
     public IEnumerable<Order> GetAllOrders()
@@ -22,18 +15,18 @@ public class OrderQuery
 
     public Order GetOrderById(int id)
     {
-        return GenerateTestOrders().SingleOrDefault(order => order.Id == id);
+        return GenerateTestOrders().Single(order => order.Id == id);
     }
 
-    public IEnumerable<Order> GetOrdersEnumerable() =>
-        _orderContext.Orders
+    public IEnumerable<Order> GetOrdersEnumerable(OrderContext orderContext) =>
+        orderContext.Orders
             .Include(order => order.OrderLines).ThenInclude(orderline => orderline.Product)
             .Include(order => order.Customer);
 
     [UseProjection]
     [UseFiltering]
     [UseSorting]
-    public IQueryable<Order> GetOrders() => _orderContext.Orders;
+    public IQueryable<Order> GetOrders(OrderContext orderContext) => orderContext.Orders;
     
     private List<Order> GenerateTestOrders()
     {
