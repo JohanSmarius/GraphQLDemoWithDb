@@ -7,19 +7,12 @@ namespace GraphQLServer.GraphQL;
 
 public class OrderMutation
 {
-    private readonly OrderContext? _orderContext;
-
-    public OrderMutation(IDbContextFactory<OrderContext> orderContextFactory)
-    {
-        _orderContext = orderContextFactory.CreateDbContext();
-    }
-
-    public async Task<CustomerPayload> AddCustomer(CustomerInput customerInput)
+    public async Task<CustomerPayload> AddCustomer(OrderContext orderContext, CustomerInput customerInput)
     {
         var customer = new Customer() {Name = customerInput.Name};
 
-        await _orderContext.Customers.AddAsync(customer);
-        await _orderContext.SaveChangesAsync();
+        await orderContext.Customers.AddAsync(customer);
+        await orderContext.SaveChangesAsync();
 
         var payload = new CustomerPayload() {Error = "", Customer = customer};
 
